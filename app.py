@@ -1,7 +1,11 @@
-from flask import Flask, render_template, request, flash, redirect
+from flask import Flask, render_template, redirect
 from forms import UploadImageForm
+import boto3
 
 app = Flask(__name__)
+
+BUCKET_NAME = 'rithm-r32-jesjas-sharebnb-jes.s3'
+REGION = 'us-east-2'
 
 @app.route('/upload', methods=["GET", "POST"])
 def signup():
@@ -15,13 +19,21 @@ def signup():
     if form.validate_on_submit():
         # if we make it here, form passes WTForms validation
         # step 1: fetch image from form
+        f = form.image_file.data
+        print('f', f)
+        print('f.filename', f.filename)
         # step 2: upload image to s3 and get URL
-        url = ''
+        s3 = boto3.resource('s3')
+        s3.Bucket('').put_object(Key=f.filename, Body=f)
+
+        url = f'https://{BUCKET_NAME}.{REGION}.amazonaws.com/{f.filename}'
+
         # step 3: redirect to image
+
         return redirect(f"{url}")
 
     else:
-        return render_template('upload-form.html', form=form)
+        return render_template('upload.html', form=form)
 
 """
 @app.route('/signup', methods=["GET", "POST"])

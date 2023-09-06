@@ -6,8 +6,8 @@
 
   <div class="row justify-content-md-center">
     <div class="col-md-7 col-lg-5">
-      <h2 class="join-message">Join Warbler today.</h2>
-      <form method="POST" id="user_form">
+      <h2 class="upload-file">Upload a file.</h2>
+      <form method="POST" id="upload_form" enctype="multipart/form-data">
         {{ form.hidden_tag() }}
 
         {% for field in form if field.widget.input_type != 'hidden' %}
@@ -17,7 +17,7 @@
           {{ field(placeholder=field.label.text, class="form-control") }}
         {% endfor %}
 
-        <button class="btn btn-primary btn-lg">Sign me up!</button>
+        <button class="btn btn-primary btn-lg">Upload</button>
       </form>
     </div>
   </div>

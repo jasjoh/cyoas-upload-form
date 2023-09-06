@@ -1,29 +1,11 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, TextAreaField
-from wtforms.validators import InputRequired, Email, Length, URL, Optional
+from wtforms import FileField
 
 
 
-"""
-class UserAddForm(FlaskForm):
+class UploadImageForm(FlaskForm):
 
-    username = StringField(
-        'Username',
-        validators=[InputRequired(), Length(max=30)],
+    image_file = FileField(
+        'Image file',
+
     )
-
-    email = StringField(
-        'E-mail',
-        validators=[InputRequired(), Email(), Length(max=50)],
-    )
-
-    password = PasswordField(
-        'Password',
-        validators=[InputRequired(), Length(min=6, max=50)],
-    )
-
-    image_url = StringField(
-        '(Optional) Image URL',
-        validators=[Optional(), URL(), Length(max=255)]
-    )
-"""
