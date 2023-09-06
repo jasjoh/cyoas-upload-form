@@ -3,8 +3,9 @@ from forms import UploadImageForm
 import boto3
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'supersecret'
 
-BUCKET_NAME = 'rithm-r32-jesjas-sharebnb-jes.s3'
+BUCKET_NAME = 'rithm-r32-jesjas-sharebnb-jes'
 REGION = 'us-east-2'
 
 @app.route('/upload', methods=["GET", "POST"])
@@ -24,9 +25,9 @@ def signup():
         print('f.filename', f.filename)
         # step 2: upload image to s3 and get URL
         s3 = boto3.resource('s3')
-        s3.Bucket('').put_object(Key=f.filename, Body=f)
+        s3.Bucket(BUCKET_NAME).put_object(Key=f.filename, Body=f)
 
-        url = f'https://{BUCKET_NAME}.{REGION}.amazonaws.com/{f.filename}'
+        url = f'https://{BUCKET_NAME}.s3.{REGION}.amazonaws.com/{f.filename}'
 
         # step 3: redirect to image
 
@@ -67,3 +68,4 @@ def signup():
         return render_template('users/signup.html', form=form)
 
 """
+
