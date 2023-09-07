@@ -25,7 +25,7 @@ def signup():
         print('f.filename', f.filename)
         # step 2: upload image to s3 and get URL
         s3 = boto3.resource('s3')
-        s3.Bucket(BUCKET_NAME).put_object(Key=f.filename, Body=f)
+        s3.Bucket(BUCKET_NAME).put_object(Key=f.filename, Body=f, ContentType=f.content_type)
 
         url = f'https://{BUCKET_NAME}.s3.{REGION}.amazonaws.com/{f.filename}'
 
