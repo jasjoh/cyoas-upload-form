@@ -5,8 +5,18 @@ import boto3
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'supersecret'
 
-BUCKET_NAME = 'rithm-r32-jesjas-sharebnb-jes'
-REGION = 'us-east-2'
+# Flask WTF File Forms
+# https://flask-wtf.readthedocs.io/en/0.15.x/form/#file-uploads
+
+
+
+# Jesse's Config
+# BUCKET_NAME = 'rithm-r32-jesjas-sharebnb-jes'
+# REGION = 'us-east-2'
+
+# Jason's Config
+BUCKET_NAME = 'rithm-r32-jesjas-sharebnb-jas'
+REGION = 'us-west-1'
 
 @app.route('/upload', methods=["GET", "POST"])
 def signup():
